@@ -1,0 +1,20 @@
+{
+  "name": "fitconnect256",
+  "version": "1.0.0",
+  "description": "FitConnect256 is a web application to connect Ugandans to fitness and nutrition experts. It’s meant to solve the challenge of  failure to find the right fitness and nutrition advice during your fitness journey. ",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/dintonharold87/FitConnect256.git"
+  },
+  "author": "Dinton Harold Ainemukama",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dintonharold87/FitConnect256/issues"
+  },
+  "homepage": "https://github.com/dintonharold87/FitConnect256#readme"
+}
