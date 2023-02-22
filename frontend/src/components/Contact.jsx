@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
   faTwitter,
-  faInstagram,
-  faLinkedin,
+  faInstagram
 } from "@fortawesome/free-brands-svg-icons";
 
 const Contact = () => {

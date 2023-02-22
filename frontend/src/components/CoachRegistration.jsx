@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+
 const theme = createTheme({
   typography: {
     fontFamily: "Inter, sans-serif",
@@ -51,7 +52,7 @@ const validationSchema = Yup.object().shape({
   coachType: Yup.string().required("Coach Type is required"),
   qualifications: Yup.string().required("Qualifications is required"),
   experience: Yup.string().required("Pricing is required"),
-  servicesOffered: Yup.string().required("Services Offered is required"),
+  services: Yup.string().required("Services Offered is required"),
   availability: Yup.string().required("Availability is required"),
   password: Yup.string()
     .required("Password is required")
@@ -79,9 +80,10 @@ const CoachRegistration = () => {
   };
 
   const steps = ["Personal Details", "Other Details"];
+  
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="xs" component="main" sx={{mb:4, mt:12}}>
+      <Container maxWidth="xs" component="main" sx={{ mb: 2, mt: 12 }}>
         {/* conatins all the information of the page */}
         <Box
           sx={{
@@ -262,8 +264,8 @@ const CoachRegistration = () => {
                   </Grid>
                 )}
                 {activeStep === 1 && (
-                  <Grid container spacing={2} sx={{ mb: 4 }}>
-                    <Grid item xs={12} sm={6}>
+                  <Grid container spacing={2} sx={{ mb: 18 }}>
+                    <Grid item xs={6} sm={6}>
                       <TextField
                         color="success"
                         required
@@ -278,7 +280,7 @@ const CoachRegistration = () => {
                         helperText={touched.experience && errors.experience}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={6} sm={6}>
                       <TextField
                         color="success"
                         required
@@ -297,6 +299,7 @@ const CoachRegistration = () => {
                         }
                       />
                     </Grid>
+
                     <Grid item xs={6} sm={6}>
                       <TextField
                         color="success"
@@ -329,7 +332,12 @@ const CoachRegistration = () => {
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
                         <Button
                           type="button"
                           variant="outlined"

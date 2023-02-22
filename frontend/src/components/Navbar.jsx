@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
@@ -7,12 +8,12 @@ const Navbar = () => {
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="/">
+            <Link to="/">
               <h1 className="text-2xl font-bold font-heading text-white">
                 <span className="text-primary">Fit</span>Connect
                 <span className="text-primary">256</span>
               </h1>
-            </a>
+            </Link>
             <div className="md:hidden">
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -59,61 +60,65 @@ const Navbar = () => {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-white text-base font-body capitalize hover:text-primary">
-                <a href="/" onClick={() => setNavbar(!navbar)}>
+                <Link to="/" onClick={() => setNavbar(!navbar)}>
                   Home
-                </a>
+                </Link>
               </li>
               <li className="text-white text-base capitalize font-body hover:text-primary">
-                <a href="#about" onClick={() => setNavbar(!navbar)}>
+                <Link to="/about" onClick={() => setNavbar(!navbar)}>
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="text-white text-base capitalize font-body hover:text-primary">
-                <a href="#faqs" onClick={() => setNavbar(!navbar)}>
+                <Link to="/faqs" onClick={() => setNavbar(!navbar)}>
                   Faqs
-                </a>
+                </Link>
               </li>
               <li className="text-white text-base capitalize font-body hover:text-primary">
-                <a href="#" onClick={() => setNavbar(!navbar)}>
+                <Link to="/coaches" onClick={() => setNavbar(!navbar)}>
                   Coaches
-                </a>
+                </Link>
               </li>
               <li className="text-white text-base capitalize font-body hover:text-primary">
-                <a href="#contact" onClick={() => setNavbar(!navbar)}>
+                <Link to="/contact" onClick={() => setNavbar(!navbar)}>
                   Contact US
-                </a>
+                </Link>
               </li>
             </ul>
 
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              <a
-                href="#"
+              <Link
+                to="/login"
                 className="inline-block w-max px-4 py-2 mr-4 text-center text-black text-sm bg-primary rounded-lg shadow font-semibold"
+                onClick={() => setNavbar(!navbar)}
               >
                 Login
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/coach_registration"
                 className="inline-block w-fit px-4 py-2 text-center text-sm text-primary bg-secondary-100 rounded-lg shadow border border-primary font-semibold "
+                onClick={() => setNavbar(!navbar)}
               >
                 Sign up
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="hidden space-x-6 lg:inline-block">
-          <a
-            href="#"
+          <Link
+            to="/login"
             className="px-4 py-2 text-black text-sm bg-primary rounded-lg shadow hover:bg-secondary-100 hover:text-primary font-semibold font-body"
+            onClick={() => setNavbar(!navbar)}
           >
             Login
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/coach_registration"
             className="px-4 py-2 text-center text-sm text-primary bg-secondary-100 rounded-lg shadow border border-primary font-semibold font-body"
+            onClick={() => setNavbar(!navbar)}
           >
             Sign up
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

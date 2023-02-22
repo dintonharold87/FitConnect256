@@ -1,5 +1,6 @@
 import React from 'react'
 import about from "../assets/images/about.png"
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -29,12 +30,12 @@ const About = () => {
             Looking for a coach who can help you achieve your fitness and health
             goals? Browse our coach profiles and find the right coach for you
             today.{" "}
-            <a
+            <Link
               className="text-sm font-semibold leading-tight text-primary border-b-2 border-primary"
-              href="#"
+              to="#"
             >
               Find a coach
-            </a>
+            </Link>
           </p>
 
           <p className="text-sm md:text-base leading-7 text-grey-100">
@@ -51,12 +52,12 @@ const About = () => {
             professional looking to grow your business and help others reach
             their goals? Join our community of coaches today and start
             connecting with potential clients.{" "} 
-            <a
+            <Link
               className="text-sm font-semibold leading-tight text-primary border-b-2 border-primary"
-              href="#"
+              to="/coach_registration"
             >
               Register as a coach
-            </a>
+            </Link>
           </p>
         </div>
       </div>
