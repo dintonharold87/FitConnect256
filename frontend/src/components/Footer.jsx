@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <section id="footer" className="bg-secondary-100">
+    <section id="footer" className="bg-secondary-100  bottom-0 w-full">
       <div className="container flex flex-col md:flex-row items-center md:justify-between mx-auto p-6 md:p-10 space-y-2">
         <p className="text-xs md:text-base font-semibold leading-normal text-primary font-body">
           Copyright © 2023 FitConnect256

@@ -81,7 +81,7 @@ const CoachRegistration = () => {
   const steps = ["Personal Details", "Other Details"];
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="xs" component="main">
+      <Container maxWidth="xs" component="main" sx={{mb:4, mt:12}}>
         {/* conatins all the information of the page */}
         <Box
           sx={{
@@ -125,7 +125,7 @@ const CoachRegistration = () => {
                 </Stepper>
                 {activeStep === 0 && (
                   <Grid container spacing={2} sx={{ mb: 4 }}>
-                    <Grid item sm={12}>
+                    <Grid item xs={12}>
                       <TextField
                         color="success"
                         autoComplete="given-name"
@@ -172,7 +172,7 @@ const CoachRegistration = () => {
                         helperText={touched.age && errors.age}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={6} sm={6}>
                       <TextField
                         color="success"
                         required
@@ -186,7 +186,7 @@ const CoachRegistration = () => {
                         helperText={touched.location && errors.location}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={6} sm={6}>
                       <TextField
                         color="success"
                         required
@@ -201,7 +201,7 @@ const CoachRegistration = () => {
                         helperText={touched.contact && errors.contact}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={6} sm={6}>
                       <FormControl
                         fullWidth
                         error={touched.gender && Boolean(errors.gender)}
@@ -222,7 +222,7 @@ const CoachRegistration = () => {
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={6} sm={6}>
                       <FormControl
                         fullWidth
                         error={touched.coachType && Boolean(errors.coachType)}
@@ -297,7 +297,7 @@ const CoachRegistration = () => {
                         }
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={6} sm={6}>
                       <TextField
                         color="success"
                         id="password"
@@ -310,7 +310,7 @@ const CoachRegistration = () => {
                         helperText={touched.password && errors.password}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={6} sm={6}>
                       <TextField
                         color="success"
                         id="confirmPassword"

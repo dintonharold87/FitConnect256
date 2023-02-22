@@ -10,7 +10,7 @@ import {
 const Contact = () => {
   return (
     <section id="contact" className="bg-black">
-      <div className="flex container flex-col mx-auto pt-14 pb-24 space-y-2 md:space-y-4">
+      <div className="flex container flex-col mx-auto pt-14 pb-24 space-y-2 md:space-y-4 px-6">
         <h2 className="font-heading text-3xl md:text-4xl leading-7 text-white uppercase">
           Contact Us
         </h2>
@@ -28,7 +28,6 @@ const Contact = () => {
           <br />
           <span className="text-primary">Phone:</span> (+256) 782-555-555
           (Monday to Friday, 9 AM to 5 PM)
-          
         </p>
         <div className="flex justify-between w-24">
           <FontAwesomeIcon icon={faFacebook} className="text-primary" />

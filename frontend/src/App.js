@@ -1,19 +1,17 @@
-import Navbar from "./components/Navbar"
-import HeroSection from "./components/HeroSection";
-import About from "./components/About";
-import Faqs from "./components/Faqs";
-import Contact from "./components/Contact";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 import Footer from "./components/Footer";
-import CoachRegistration from './components/CoachRegistration';
+import CoachRegistration from "./components/CoachRegistration";
+import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
       <Navbar />
-      <HeroSection />
-      <About />
-      <Faqs />
-      <Contact />
-      <CoachRegistration />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/CoachRegistration" element={<CoachRegistration />} />
+      </Routes>
+
       <Footer />
     </>
   );

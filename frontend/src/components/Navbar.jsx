@@ -3,11 +3,11 @@ import React, { useState } from "react";
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   return (
-    <nav className="w-full bg-black shadow">
+    <nav className="w-full bg-black shadow fixed top-0 left-0 right-0 z-50">
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="#">
+            <a href="/">
               <h1 className="text-2xl font-bold font-heading text-white">
                 <span className="text-primary">Fit</span>Connect
                 <span className="text-primary">256</span>
@@ -59,19 +59,29 @@ const Navbar = () => {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className="text-white text-base font-body capitalize hover:text-primary">
-                <a href="#">Home</a>
+                <a href="/" onClick={() => setNavbar(!navbar)}>
+                  Home
+                </a>
               </li>
               <li className="text-white text-base capitalize font-body hover:text-primary">
-                <a href="#">About Us</a>
+                <a href="#about" onClick={() => setNavbar(!navbar)}>
+                  About Us
+                </a>
               </li>
               <li className="text-white text-base capitalize font-body hover:text-primary">
-                <a href="#">Faqs</a>
+                <a href="#faqs" onClick={() => setNavbar(!navbar)}>
+                  Faqs
+                </a>
               </li>
               <li className="text-white text-base capitalize font-body hover:text-primary">
-                <a href="#">Coaches</a>
+                <a href="#" onClick={() => setNavbar(!navbar)}>
+                  Coaches
+                </a>
               </li>
               <li className="text-white text-base capitalize font-body hover:text-primary">
-                <a href="#">Contact US</a>
+                <a href="#contact" onClick={() => setNavbar(!navbar)}>
+                  Contact US
+                </a>
               </li>
             </ul>
 
