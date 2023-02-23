@@ -21,19 +21,30 @@ const theme = createTheme({
     fontFamily: "Inter, sans-serif",
   },
 });
+// services that coaches can provide
+const services = [
+  "Cardio",
+  "Strength Training",
+  "Yoga",
+  "Pilates",
+  "Meal planning",
+  "Nutritional counseling",
+  "Sports nutrition",
+  "Supplements advice"
+];
 
 const initialValues = {
   name: "",
   age: "",
   email: "",
   location: "",
-  profilePicture: "",
+  role: "coach",
   gender: "",
   contact: "",
   coachType: "",
   qualifications: "",
   experience: "",
-  servicesOffered: "",
+  services: [],
   availability: "",
   password: "",
   confirmPassword: "",
@@ -52,7 +63,9 @@ const validationSchema = Yup.object().shape({
   coachType: Yup.string().required("Coach Type is required"),
   qualifications: Yup.string().required("Qualifications is required"),
   experience: Yup.string().required("Pricing is required"),
-  services: Yup.string().required("Services Offered is required"),
+  services: Yup.array()
+    .min(1, "Please select at least one service")
+    .of(Yup.string().required("Service is required")),
   availability: Yup.string().required("Availability is required"),
   password: Yup.string()
     .required("Password is required")
@@ -68,6 +81,7 @@ const onSubmit = (values) => {
 
 // Coach registration component
 const CoachRegistration = () => {
+  
   // code for the stepper
   const [activeStep, setActiveStep] = useState(0);
 
@@ -80,7 +94,7 @@ const CoachRegistration = () => {
   };
 
   const steps = ["Personal Details", "Other Details"];
-  
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xs" component="main" sx={{ mb: 2, mt: 12 }}>
@@ -216,8 +230,8 @@ const CoachRegistration = () => {
                           label="Gender"
                           fullWidth
                           labelId="genderType"
-                          onChange={handleChange}
                           value={values.gender}
+                          onChange={handleChange}
                         >
                           <MenuItem value="Male">Male</MenuItem>
                           <MenuItem value="Female">Female</MenuItem>
@@ -298,6 +312,33 @@ const CoachRegistration = () => {
                           touched.qualifications && errors.qualifications
                         }
                       />
+                    </Grid>
+                    <Grid item xs={6} sm={6}>
+                      <FormControl
+                        fullWidth
+                        error={touched.services && Boolean(errors.services)}
+                      >
+                        <InputLabel id="services-label">
+                          Services Offered
+                        </InputLabel>
+                        <Select
+                          labelId="services-label"
+                          multiple={true}
+                          value={values.services}
+                          onChange={handleChange}
+                          id="services"
+                          label="Services Offered"
+                          name="services"
+                          color="success"
+                          renderValue={(selected) => selected.join(", ")}
+                        >
+                          {services.map((service) => (
+                            <MenuItem key={service} value={service}>
+                              {service}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
                     </Grid>
 
                     <Grid item xs={6} sm={6}>

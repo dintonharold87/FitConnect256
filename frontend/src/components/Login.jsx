@@ -109,7 +109,6 @@ const Login = () => {
                         label="Role"
                         color="success"
                         onChange={handleChange}
-                        value={values.role}
                         fullWidth
                       >
                         <MenuItem value="admin">Admin</MenuItem>
@@ -141,16 +140,29 @@ const Login = () => {
                       login
                     </Button>
                   </Grid>
-                  <Grid item>
-                    <Link to="/coach_registration" variant="body2">
-                      {"Don't have an account? Sign Up"}
-                    </Link>
-                  </Grid>
                 </Grid>
               </Box>
             )}
           </Formik>
         </Box>
+        <Grid container>
+          <Grid item xs={5}>
+            <Link
+              to="/admin_registration"
+              className="text-blue-500 hover:text-blue-700 underline text-xs sm:text-sm"
+            >
+              Sign up as an admin
+            </Link>
+          </Grid>
+          <Grid item xs={7}>
+            <Link
+              to="/coach_registration"
+              className="text-blue-500 hover:text-blue-700 underline text-xs sm:text-sm"
+            >
+              Don't have an account? Sign Up
+            </Link>
+          </Grid>
+        </Grid>
       </Container>
     </ThemeProvider>
   );
