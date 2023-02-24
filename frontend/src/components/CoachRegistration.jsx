@@ -15,6 +15,7 @@ import Button from "@mui/material/Button";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
+import FormHelperText from "@mui/material/FormHelperText";
 
 const theme = createTheme({
   typography: {
@@ -32,6 +33,16 @@ const services = [
   "Sports nutrition",
   "Supplements advice"
 ];
+// Days the coaches can be available
+const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
 
 const initialValues = {
   name: "",
@@ -45,7 +56,7 @@ const initialValues = {
   qualifications: "",
   experience: "",
   services: [],
-  availability: "",
+  availability: [],
   password: "",
   confirmPassword: "",
 };
@@ -66,7 +77,9 @@ const validationSchema = Yup.object().shape({
   services: Yup.array()
     .min(1, "Please select at least one service")
     .of(Yup.string().required("Service is required")),
-  availability: Yup.string().required("Availability is required"),
+  availability: Yup.array()
+    .min(1, "Please select at least one day")
+    .of(Yup.string().required("Days available is required")),
   password: Yup.string()
     .required("Password is required")
     .min(8, "Password must be at least 8 characters"),
@@ -236,6 +249,9 @@ const CoachRegistration = () => {
                           <MenuItem value="Male">Male</MenuItem>
                           <MenuItem value="Female">Female</MenuItem>
                         </Select>
+                        {errors.gender && touched.gender && (
+                          <FormHelperText>{errors.gender}</FormHelperText>
+                        )}
                       </FormControl>
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -261,6 +277,9 @@ const CoachRegistration = () => {
                             Nutrition coach
                           </MenuItem>
                         </Select>
+                        {errors.coachType && touched.coachType && (
+                          <FormHelperText>{errors.coachType}</FormHelperText>
+                        )}
                       </FormControl>
                     </Grid>
                     <Grid item xs={12}>
@@ -338,9 +357,41 @@ const CoachRegistration = () => {
                             </MenuItem>
                           ))}
                         </Select>
+                        {errors.services && touched.services && (
+                          <FormHelperText>{errors.services}</FormHelperText>
+                        )}
                       </FormControl>
                     </Grid>
-
+                    <Grid item xs={6} sm={6}>
+                      <FormControl
+                        fullWidth
+                        error={touched.availability && Boolean(errors.availability)}
+                      >
+                        <InputLabel id="availability-label">
+                          Days Available
+                        </InputLabel>
+                        <Select
+                          labelId="availability-label"
+                          multiple={true}
+                          value={values.availability}
+                          onChange={handleChange}
+                          id="availability"
+                          label="Days available"
+                          name="availability"
+                          color="success"
+                          renderValue={(selected) => selected.join(", ")}
+                        >
+                          {days.map((day) => (
+                            <MenuItem key={day} value={day}>
+                              {day}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                        {errors.availability && touched.availability && (
+                          <FormHelperText>{errors.availability}</FormHelperText>
+                        )}
+                      </FormControl>
+                    </Grid>
                     <Grid item xs={6} sm={6}>
                       <TextField
                         color="success"

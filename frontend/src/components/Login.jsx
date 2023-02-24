@@ -16,7 +16,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import FormHelperText from "@mui/material/FormHelperText";
 const theme = createTheme({
   typography: {
     fontFamily: "Inter, sans-serif",
@@ -33,15 +33,13 @@ const validationSchema = Yup.object().shape({
     .required("Password is required")
     .min(8, "Password must be at least 8 characters"),
 });
+
+// onsubmit function
+const onSubmit = (values) => {
+  console.log(values);
+};
 const Login = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" sx={{ mb: 2, mt: 12 }}>
@@ -62,7 +60,7 @@ const Login = () => {
           </Typography>
           <Formik
             initialValues={initialValues}
-            onSubmit={handleSubmit}
+            onSubmit={onSubmit}
             validationSchema={validationSchema}
           >
             {({
@@ -109,11 +107,15 @@ const Login = () => {
                         label="Role"
                         color="success"
                         onChange={handleChange}
+                        value={values.role}
                         fullWidth
                       >
                         <MenuItem value="admin">Admin</MenuItem>
                         <MenuItem value="coach">Coach</MenuItem>
                       </Select>
+                      {errors.role && touched.role && (
+                        <FormHelperText>{errors.role}</FormHelperText>
+                      )}
                     </FormControl>
                   </Grid>
                   <Grid item xs={12}>

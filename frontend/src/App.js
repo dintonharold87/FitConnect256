@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import CoachRegistration from "./components/CoachRegistration";
+import AdminRegistration from "./components/AdminRegistration";
 import { Routes, Route } from "react-router-dom";
 import About from "./components/About";
 import Faqs from "./components/Faqs";
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/coach_registration" element={<CoachRegistration />} />
+        <Route path="/admin_registration" element={<AdminRegistration />} />
       </Routes>
 
       <Footer />
