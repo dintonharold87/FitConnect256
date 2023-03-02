@@ -25,7 +25,7 @@ const coachSchema = new mongoose.Schema({
     num: ["Fitness coach", "Nuitrition coach"],
     required: true,
   },
-  admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin", required: true },
+  admin: { type: mongoose.Schema.Types.ObjectId, ref: "Admin",},
   availability: [
     {
       type: [String],

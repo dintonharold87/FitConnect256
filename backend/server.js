@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 
+
 const app = express();
 dotenv.config();
 
@@ -34,11 +35,17 @@ mongoose
 app.use(cors());
 app.use(express.json());
 
+// include other routes files
+const coachRoutes = require("./routes/coachRoutes");
 
 // testing server
+// define root URL route handler
 app.get("/", (req, res) => {
   res.send("<h1>this is home page of FitConnect256 Api </h1>");
 });
+
+// use other route endpoints in your routes files
+app.use("/", coachRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
