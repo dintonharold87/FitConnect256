@@ -37,7 +37,7 @@ app.use(express.json());
 
 // include other routes files
 const coachRoutes = require("./routes/coachRoutes");
-
+const adminRoutes = require("./routes/adminRoutes");
 // testing server
 // define root URL route handler
 app.get("/", (req, res) => {
@@ -45,7 +45,8 @@ app.get("/", (req, res) => {
 });
 
 // use other route endpoints in your routes files
-app.use("/", coachRoutes);
+app.use("/api/coaches", coachRoutes);
+app.use("/api/admins", adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);

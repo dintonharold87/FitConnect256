@@ -34,6 +34,12 @@ exports.createCoach = async (req, res) => {
 // Update coach data
 exports.updateCoach = async (req, res) => {
   try {
+    // Hash password if it has been updated
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      req.body.password = await bcrypt.hash(req.body.password, salt);
+    }
+
     const coach = await Coach.findByIdAndUpdate(req.params.id, req.body, {
       new: true, // return the modified document
       runValidators: true, // validate the update operation against the model's schema
