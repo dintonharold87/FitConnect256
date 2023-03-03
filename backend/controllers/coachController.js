@@ -20,7 +20,11 @@ exports.createCoach = async (req, res) => {
       coachType: req.body.coachType,
       availability: req.body.availability,
     });
-
+    // check if user exists
+    // const userExists = await newCoach.findOne({ email });
+    // if (userExists) {
+    //   res.status(400).json({ status: "User exists" });
+    // }
     // save the coach to the database
     const coach = await newCoach.save();
     console.log(coach);

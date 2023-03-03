@@ -6,7 +6,9 @@ exports.createAdmin = async (req, res) => {
   try {
     // Hash password
     const salt = await bcrypt.genSalt(10);
+    console.log("Salt:", salt);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    console.log("Hashed Password:", hashedPassword);
 
     // Create admin object
     const admin = new Admin({
@@ -21,8 +23,8 @@ exports.createAdmin = async (req, res) => {
 
     res.status(201).json({ message: "Admin registered successfully" });
   } catch (error) {
-    console.log(err);
-    res.status(400).json({ status: "fail", message: err.message });
+    console.log(error);
+    res.status(400).json({ status: "fail", message: error.message });
   }
 };
 
