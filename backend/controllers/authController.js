@@ -23,7 +23,9 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: "passwords don't match" });
     }
     // If the login is successful, create a JWT token and return it
-    const token = jwt.sign({ userId: user._id, role }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user._id, role }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
     return res.status(200).json({ token });
   } catch (err) {
     // If an error occurs, return an error response

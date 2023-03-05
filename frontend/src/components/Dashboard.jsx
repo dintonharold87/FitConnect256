@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -96,10 +96,10 @@ const Drawer = styled(MuiDrawer, {
 
 // Beginning of component
 const Dashboard = () => {
-    const [open, setOpen] = React.useState(true);
-    const toggleDrawer = () => {
-      setOpen(!open);
-    };
+  const [open, setOpen] = React.useState(true);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -199,6 +199,6 @@ const Dashboard = () => {
       </Box>
     </ThemeProvider>
   );
-}
+};
 
-export default Dashboard
+export default Dashboard;

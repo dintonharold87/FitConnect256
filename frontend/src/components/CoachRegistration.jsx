@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import axios from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -88,9 +90,9 @@ const validationSchema = Yup.object().shape({
     .required("Confirm Password is required"),
 });
 // onsubmit function
-const onSubmit = (values) => {
-  console.log(values);
-};
+// const onSubmit = (values) => {
+//   console.log(values);
+// };
 
 // Coach registration component
 const CoachRegistration = () => {
@@ -107,6 +109,24 @@ const CoachRegistration = () => {
   };
 
   const steps = ["Personal Details", "Other Details"];
+  
+  const navigate = useNavigate();
+  const handleSubmit = async (values, actions) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/coaches`,
+        values
+      );
+      console.log(response.data);
+      actions.resetForm();
+      alert("Registration successful!");
+    } catch (error) {
+      console.log(error);
+      alert("Registration failed. Please try again.");
+    }
+     navigate("/login");
+  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -127,7 +147,7 @@ const CoachRegistration = () => {
 
           <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
             {({
@@ -365,7 +385,9 @@ const CoachRegistration = () => {
                     <Grid item xs={6} sm={6}>
                       <FormControl
                         fullWidth
-                        error={touched.availability && Boolean(errors.availability)}
+                        error={
+                          touched.availability && Boolean(errors.availability)
+                        }
                       >
                         <InputLabel id="availability-label">
                           Days Available

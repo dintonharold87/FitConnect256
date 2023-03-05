@@ -1,4 +1,7 @@
 import React from "react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
@@ -17,6 +20,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FormHelperText from "@mui/material/FormHelperText";
+
 const theme = createTheme({
   typography: {
     fontFamily: "Inter, sans-serif",
@@ -35,11 +39,37 @@ const validationSchema = Yup.object().shape({
 });
 
 // onsubmit function
-const onSubmit = (values) => {
-  console.log(values);
-};
+// const onSubmit = (values) => {
+//   console.log(values);
+// };
 const Login = () => {
-  
+  const navigate = useNavigate();
+
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
+        values
+      );
+      const token = response.data;
+
+      // localStorage.setItem("token", token);
+      const decoded = jwt_decode(token.token);
+
+      const role = decoded.role;
+
+      if (role === "coach") {
+        navigate("/coach_registration");
+      } else if (role === "admin") {
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.log(error);
+
+      alert("Login failed. Please try again.");
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" sx={{ mb: 2, mt: 12 }}>
@@ -60,7 +90,7 @@ const Login = () => {
           </Typography>
           <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
             {({

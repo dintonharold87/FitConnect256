@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router";
+import axios from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -34,13 +36,30 @@ const validationSchema = Yup.object().shape({
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Confirm Password is required"),
 });
-// onsubmit function
-const onSubmit = (values) => {
-  console.log(values);
-};
+// // onsubmit function
+// const onSubmit = (values) => {
+//   console.log(values);
+// };
 
 // Admin registration component
 const AdminRegistration = () => {
+  const navigate = useNavigate();
+  const handleSubmit = async (values, actions) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/admins`,
+        values
+      );
+      console.log(response.data);
+      actions.resetForm();
+      alert("Registration successful!");
+    } catch (error) {
+      console.log(error);
+      alert("Registration failed. Please try again.");
+    }
+    navigate("/login");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="xs" component="main" sx={{ mb: 8, mt: 16 }}>
@@ -58,7 +77,7 @@ const AdminRegistration = () => {
           </Typography>
           <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit}
             validationSchema={validationSchema}
           >
             {(
