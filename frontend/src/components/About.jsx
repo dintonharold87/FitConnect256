@@ -32,7 +32,7 @@ const About = () => {
             today.{" "}
             <Link
               className="text-sm font-semibold leading-tight text-primary border-b-2 border-primary"
-              to="#"
+              to="/coaches"
             >
               Find a coach
             </Link>
