@@ -52,14 +52,18 @@ const Login = () => {
         values
       );
       const token = response.data;
+      // Store the token in local storage
+      localStorage.setItem("token", token);
 
       // localStorage.setItem("token", token);
       const decoded = jwt_decode(token.token);
 
       const role = decoded.role;
-
+      const id=decoded.userId;
+      console.log(decoded);
+      console.log(id);
       if (role === "coach") {
-        navigate("/coach_registration");
+        navigate(`/coach/${id}`);
       } else if (role === "admin") {
         navigate("/dashboard");
       }

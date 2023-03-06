@@ -11,6 +11,9 @@ router.put("/:id", auth, coachAuth, coachController.updateCoach);
 // Get all coaches
 router.get("/", coachController.getAllCoaches);
 
+// Get details for one coach
+router.get("/:id",  coachController.getOneCoach)
+
 // Delete coach by ID
 router.delete("/:id", auth, adminAuth, coachController.deleteCoach);
 

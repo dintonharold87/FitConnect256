@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -22,6 +22,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import CoachList from "./CoachList";
 
 // footer copyright
 function Copyright(props) {
@@ -41,6 +42,9 @@ function Copyright(props) {
     </Typography>
   );
 }
+
+
+
 
 const theme = createTheme({
   typography: {
@@ -94,13 +98,21 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
+
+
 // Beginning of component
 const Dashboard = () => {
+  const [showComponent, setShowComponent] = useState(false);
+
+  const handleClick = () => {
+    setShowComponent(true);
+  };
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
+  
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
@@ -165,7 +177,7 @@ const Dashboard = () => {
               </ListItemIcon>
               <ListItemText primary="Overview" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={handleClick}>
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
@@ -188,9 +200,9 @@ const Dashboard = () => {
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
-                <Paper
-                  sx={{ p: 2, display: "flex", flexDirection: "column" }}
-                ></Paper>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  {showComponent && <CoachList/>}
+                </Paper>
               </Grid>
             </Grid>
             <Copyright sx={{ pt: 4 }} />

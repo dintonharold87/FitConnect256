@@ -87,6 +87,26 @@ exports.getAllCoaches = async (req, res) => {
   }
 };
 
+// Get one coach
+
+exports.getOneCoach = async (req, res) => {
+  try {
+    const coaches = await Coach.findById(req.params.id);
+    if (!coaches) {
+      return res.status(404).json({ error: "Coach not found" });
+    }
+    res.status(200).json({
+      coaches
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
+
 //Delete a coach
 exports.deleteCoach = async (req, res) => {
   try {

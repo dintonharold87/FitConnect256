@@ -9,6 +9,8 @@ import Faqs from "./components/Faqs";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import CoachView from "./components/CoachView";
+import CoachList from "./components/CoachList";
 function App() {
    const location = useLocation();
    const isDashboardRoute = location.pathname.startsWith("/dashboard");
@@ -21,7 +23,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/coach/:id" element={<CoachView />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/coaches" element={<CoachList />} />
         <Route path="/coach_registration" element={<CoachRegistration />} />
         <Route path="/admin_registration" element={<AdminRegistration />} />
       </Routes>
