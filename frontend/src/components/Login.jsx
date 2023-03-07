@@ -51,9 +51,12 @@ const Login = () => {
         `${process.env.REACT_APP_BACKEND_URL}/login`,
         values
       );
+      
+      const tokenToUse=response.data.token
+      console.log(tokenToUse)
       const token = response.data;
       // Store the token in local storage
-      localStorage.setItem("token", token);
+      localStorage.setItem("tokenToUse", tokenToUse);
 
       // localStorage.setItem("token", token);
       const decoded = jwt_decode(token.token);

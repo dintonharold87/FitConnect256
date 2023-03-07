@@ -22,7 +22,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CoachList from "./CoachList";
+
+import CoachListAdmin from "./CoachListAdmin";
 
 // footer copyright
 function Copyright(props) {
@@ -42,9 +43,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-
-
 
 const theme = createTheme({
   typography: {
@@ -98,8 +96,6 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-
-
 // Beginning of component
 const Dashboard = () => {
   const [showComponent, setShowComponent] = useState(false);
@@ -111,8 +107,12 @@ const Dashboard = () => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  // Arrow function to log out the user
+  const logoutUser = () => {
+    localStorage.removeItem("tokenToUse"); // Remove JWT token from localStorage
+    window.location.href = "/login"; // Redirect to login page
+  };
 
-  
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
@@ -150,6 +150,7 @@ const Dashboard = () => {
               size="small"
               color="inherit"
               endIcon={<Logout />}
+              onClick={logoutUser}
             >
               Logout
             </Button>
@@ -201,7 +202,7 @@ const Dashboard = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  {showComponent && <CoachList/>}
+                  {showComponent && <CoachListAdmin />}
                 </Paper>
               </Grid>
             </Grid>
