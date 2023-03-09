@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
+const path = require("path");
 
 
 const app = express();
@@ -39,17 +39,25 @@ app.use(express.json());
 const coachRoutes = require("./routes/coachRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
-// testing server
-// define root URL route handler
-app.get("/", (req, res) => {
-  res.send("<h1>this is home page of FitConnect256 Api </h1>");
-});
+
+
+// // Serve static files from the React app
+//      app.use(express.static(path.join(__dirname, '../frontend/build')));
+
 
 // use other route endpoints in your routes files
 app.use("/api/coaches", coachRoutes);
 app.use("/api/admins", adminRoutes);
 app.use("/api/login", authRoutes);
 
+  // // Serve the React app
+  //    app.get('*', (req, res) => {
+  //      res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+  //    });
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
+
+module.exports = app;

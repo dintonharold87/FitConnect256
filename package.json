@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "deploy": "firebase deploy --only hosting"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/dintonharold87/FitConnect256/issues"
   },
-  "homepage": "https://github.com/dintonharold87/FitConnect256#readme"
+  "homepage": "https://github.com/dintonharold87/FitConnect256#readme",
+  "dependencies": {
+    "firebase-admin": "^11.5.0"
+  }
 }

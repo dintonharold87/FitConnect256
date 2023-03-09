@@ -3,7 +3,7 @@ import { Card, CardContent, Button } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useParams} from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const theme = createTheme({
@@ -18,14 +18,15 @@ const CoachView = () => {
   const [coach, setCoach] = useState({});
   // editing data
   const [editing, setEditing] = useState(false);
-
+  const navigate = useNavigate();
   // console.log(JSON.stringify(token));
   const token = localStorage.getItem("tokenToUse");
 
   // Arrow function to log out the user
   const logoutUser = () => {
     localStorage.removeItem("tokenToUse"); // Remove JWT token from localStorage
-    window.location.href = "/login"; // Redirect to login page
+    // redirect to login page
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -48,7 +49,6 @@ const CoachView = () => {
     fetchCoachDetails();
   }, [id, token]);
 
-  
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -82,12 +82,7 @@ const CoachView = () => {
                 marginTop: "10px",
               }}
             >
-              <Button
-                type="button"
-                variant="outlined"
-                color="primary"
-                
-              >
+              <Button type="button" variant="outlined" color="primary">
                 Edit
               </Button>
               <Button
@@ -101,7 +96,6 @@ const CoachView = () => {
             </Box>
           </CardContent>
         </Card>
-       
       </Box>
     </ThemeProvider>
   );

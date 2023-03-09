@@ -1,2 +1,10 @@
 node_modules/
 backend/.env
+functions
+.firebaserc
+database.rules.json
+firebase.json
+.firebase
+.github
+database-debug.log
+ui-debug.log

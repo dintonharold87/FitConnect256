@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -98,6 +100,7 @@ const Drawer = styled(MuiDrawer, {
 
 // Beginning of component
 const Dashboard = () => {
+   const navigate = useNavigate();
   const [showComponent, setShowComponent] = useState(false);
 
   const handleClick = () => {
@@ -110,7 +113,8 @@ const Dashboard = () => {
   // Arrow function to log out the user
   const logoutUser = () => {
     localStorage.removeItem("tokenToUse"); // Remove JWT token from localStorage
-    window.location.href = "/login"; // Redirect to login page
+    // redirect to login page
+    navigate("/login");
   };
 
   return (
